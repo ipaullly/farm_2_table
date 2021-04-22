@@ -49,141 +49,143 @@ class _SignInState extends State<SignIn> {
       body: Container(
         child: Form(
           key: _formKey,
-          child: Column(
-            children: <Widget>[
-              Stack(
-                  alignment: Alignment.bottomCenter,
-                  children: <Widget>[
-                    Stack(
-                      alignment: Alignment.center,
-                      children: <Widget>[
-                        ConstrainedBox(
-                            constraints: const BoxConstraints(
-                              minWidth: double.infinity,
-                              minHeight:  280.0
-                          ),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(30.0),
-                                bottomRight: Radius.circular(30.0),
-                              )
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Stack(
+                    alignment: Alignment.bottomCenter,
+                    children: <Widget>[
+                      Stack(
+                        alignment: Alignment.center,
+                        children: <Widget>[
+                          ConstrainedBox(
+                              constraints: const BoxConstraints(
+                                minWidth: double.infinity,
+                                minHeight:  280.0
                             ),
-                          ),
-                        ),
-                        Container(
-                          height: 100.0,
-                          child: Image.asset(
-                            'assets/images/F2T_logo.png',
-                            fit: BoxFit.fitHeight,
-                          ),
-                        )
-                    ],
-                  ),
-                  Container(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.baseline,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      mainAxisSize: MainAxisSize.max,
-                      children: <Widget>[
-                        Container(
-                          decoration: BoxDecoration(
-                              border: Border(
-                                bottom: BorderSide( //                   <--- left side
-                                  color: Colors.lightGreen,
-                                  width: 5.0,
-                                ),
-                              )
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 40.0),
-                            child: Text(
-                              'Login',
-                              style: TextStyle(
-                                  fontSize: 16.0,
-                                  color: Colors.black
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(30.0),
+                                  bottomRight: Radius.circular(30.0),
+                                )
                               ),
                             ),
                           ),
-                        ),
-                        Container(
-                            child:  FlatButton.icon(
-                                icon: Icon(Icons.person),
-                                label: Text(
-                                  'Sign Up',
-                                  style: TextStyle(
-                                      fontSize: 16.0,
-                                      color: Colors.black
-                                  ),
-                                ),
-                                onPressed: () {
-                                  widget.toggleView();
-                                }
-                            )
-                        ),
+                          Container(
+                            height: 100.0,
+                            child: Image.asset(
+                              'assets/images/F2T_logo.png',
+                              fit: BoxFit.fitHeight,
+                            ),
+                          )
                       ],
                     ),
-                  )
-                ]
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 50.0),
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(height: 10.0),
-                    TextFormField(
-                      validator: (val) => val.isEmpty ? 'Enter an email': null,
-                      onChanged: (val) {
-                        setState(() {
-                          email = val;
-                        });
-                      },
-                      decoration: textInputDecoration.copyWith(hintText: 'Email'),
-                    ),
-                    SizedBox(height: 10.0),
-                    TextFormField(
-                      validator: (val) => val.length < 6 ? 'Enter password at least 6+ characters long': null,
-                      obscureText: true,
-                      onChanged: (val) {
-                        setState(() {
-                          password = val;
-                        });
-                      },
-                      decoration: textInputDecoration.copyWith(hintText: 'Password'),
-                    ),
-                    SizedBox(height: 30.0),
-                    RaisedButton(
-                        padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 60.0),
-                        color: Colors.lightGreen,
-                        child: Text(
-                          'Sign In',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        onPressed: () async {
-                          if(_formKey.currentState.validate()){
-                            setState(() {
-                              loading = true;
-                            });
-                            dynamic result = _auth.loginWithEmailAndPassword(email, password);
-                            if(result == null){
+                    Container(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisSize: MainAxisSize.max,
+                        children: <Widget>[
+                          Container(
+                            decoration: BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide( //                   <--- left side
+                                    color: Colors.lightGreen,
+                                    width: 5.0,
+                                  ),
+                                )
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 40.0),
+                              child: Text(
+                                'Login',
+                                style: TextStyle(
+                                    fontSize: 16.0,
+                                    color: Colors.black
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                              child:  FlatButton.icon(
+                                  icon: Icon(Icons.person),
+                                  label: Text(
+                                    'Sign Up',
+                                    style: TextStyle(
+                                        fontSize: 16.0,
+                                        color: Colors.black
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    widget.toggleView();
+                                  }
+                              )
+                          ),
+                        ],
+                      ),
+                    )
+                  ]
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 50.0),
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(height: 10.0),
+                      TextFormField(
+                        validator: (val) => val.isEmpty ? 'Enter an email': null,
+                        onChanged: (val) {
+                          setState(() {
+                            email = val;
+                          });
+                        },
+                        decoration: textInputDecoration.copyWith(hintText: 'Email'),
+                      ),
+                      SizedBox(height: 10.0),
+                      TextFormField(
+                        validator: (val) => val.length < 6 ? 'Enter password at least 6+ characters long': null,
+                        obscureText: true,
+                        onChanged: (val) {
+                          setState(() {
+                            password = val;
+                          });
+                        },
+                        decoration: textInputDecoration.copyWith(hintText: 'Password'),
+                      ),
+                      SizedBox(height: 30.0),
+                      RaisedButton(
+                          padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 60.0),
+                          color: Colors.lightGreen,
+                          child: Text(
+                            'Sign In',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          onPressed: () async {
+                            if(_formKey.currentState.validate()){
                               setState(() {
-                                error = 'please supply valid credentials';
                                 loading = true;
                               });
+                              dynamic result = _auth.loginWithEmailAndPassword(email, password);
+                              if(result == null){
+                                setState(() {
+                                  error = 'please supply valid credentials';
+                                  loading = true;
+                                });
+                              }
                             }
                           }
-                        }
-                    ),
-                    SizedBox(height: 12.0),
-                    Text(
-                      error,
-                      style: TextStyle(color: Colors.red, fontSize: 14.0),
-                    )
-                  ],
+                      ),
+                      SizedBox(height: 12.0),
+                      Text(
+                        error,
+                        style: TextStyle(color: Colors.red, fontSize: 14.0),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

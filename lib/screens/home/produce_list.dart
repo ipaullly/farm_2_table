@@ -11,19 +11,12 @@ class ProduceList extends StatefulWidget {
 class _ProduceListState extends State<ProduceList> {
   @override
   Widget build(BuildContext context) {
-
     final produce = Provider.of<List<Produce>>(context);
-    produce.forEach((produce) {
-      print(produce.name);
-      print(produce.price);
-      print(produce.imageUrl);
-      print(produce.minUnit);
-    });
     return ListView.builder(
-        itemCount: produce.length,
-        itemBuilder: (context, index){
-            return ProduceTile(produce: produce[index]);
-          },
+      itemCount: produce.length,
+      itemBuilder: (context, index){
+        return ProduceTile(produce: produce[index]);
+      },
     );
   }
 }

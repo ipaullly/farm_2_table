@@ -16,8 +16,18 @@ class ProduceTile extends StatelessWidget {
               radius: 25.0,
               backgroundColor: Colors.lightBlue[20],
             ),
-            title: Text(produce.name),
-            subtitle: Text('Min unit is ${produce.minUnit} at ${produce.price}'),
+            title: Text(produce.produceName),
+            subtitle: Padding(
+              padding: EdgeInsets.fromLTRB(0, 10.0, 0, 5.0),
+              child: Text(
+                'Minimum unit of sale is ${produce.minUnit} ${produce.unitMeasure} at KES ${produce.price}',
+                style: TextStyle(
+                  color: Colors.grey[12],
+                  fontSize: 12,
+                  fontStyle: FontStyle.italic
+                ) ,
+              ),
+            ),
           ),
         ),
     );
